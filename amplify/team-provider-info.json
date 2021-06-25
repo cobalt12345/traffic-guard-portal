@@ -19,7 +19,24 @@
         }
       },
       "auth": {
-        "trafficguardportalfa3dd78afa3dd78a": {}
+        "trafficguardportalfa3dd78afa3dd78a": {
+          "googleClientId": "102645471861-4ecj2hrdbb33vn4aoicroi2ellqdf1iv.apps.googleusercontent.com"
+        }
+      },
+      "storage": {
+        "trafficguardportal1acc6547": {
+          "bucketName": "traffic-guard-cars-and-plates",
+          "region": "eu-central-1"
+        },
+        "TrafficGuardParsedCarLicensePlates": {
+          "tableName": "TrafficGuardParsedCarLicensePlates",
+          "region": "eu-central-1",
+          "arn": "arn:aws:dynamodb:eu-central-1:469694857107:table/TrafficGuardParsedCarLicensePlates",
+          "partitionKeyName": "car_license_plate_number",
+          "partitionKeyType": "S",
+          "sortKeyName": "parsed_timestamp",
+          "sortKeyType": "N"
+        }
       }
     }
   }
