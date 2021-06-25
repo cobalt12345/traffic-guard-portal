@@ -1,0 +1,13 @@
+type TrafficGuardParsedCarLicensePlates @model
+@auth(rules: [{ allow: private, provider: iam }])
+@key(fields: ["car_license_plate_number", "parsed_timestamp"])
+@key(fields: ["object_key_in_bucket"], name: "ObjectKeyInBucketGSI", queryField: "carLicensePlateByBucketObjectKey")
+@key(fields: ["gps_location"], name: "GpsLocation", queryField: "carLicensePlateByGpsLocation")
+@key(fields: ["parsed_timestamp", "parsed_date_time"], name: "CaughtDateTime", queryField: "carLicensePlateByCaughtDateTime" )
+{
+  car_license_plate_number: String!
+  parsed_timestamp: Int!
+  parsed_date_time: String!
+  gps_location: String
+  object_key_in_bucket: String!
+}

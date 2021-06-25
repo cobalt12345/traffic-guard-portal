@@ -1,0 +1,7 @@
+{
+  "AppSyncApiName": "trafficguardportal",
+  "DynamoDBBillingMode": "PROVISIONED",
+  "DynamoDBModelTableReadIOPS": 1,
+  "DynamoDBModelTableWriteIOPS": 1,
+  "DynamoDBEnableServerSideEncryption": false
+}
