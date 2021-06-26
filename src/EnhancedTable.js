@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -10,10 +10,9 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import {FormControlLabel, IconButton, Switch, TableSortLabel, Toolbar, Tooltip, Typography} from "@material-ui/core";
 import PropTypes from 'prop-types';
-import DeleteIcon from '@material-ui/icons/Delete';
 import {lighten} from "material-ui/utils/colorManipulator";
 import clsx from "clsx";
-import FilterListIcon from '@material-ui/icons/FilterList';
+import {createConsole} from "./inlineConsole";
 
 
 const columns = [
@@ -170,33 +169,11 @@ const EnhancedTableToolbar = (props) => {
 
     return (
         <Toolbar
-            className={clsx(classes.root, {
-                [classes.highlight]: numSelected > 0,
-            })}
+            className={clsx(classes.root)}
         >
-            {numSelected > 0 ? (
-                <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
-                    {numSelected} selected
-                </Typography>
-            ) : (
-                <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-
-                </Typography>
-            )}
-
-            {numSelected > 0 ? (
-                <Tooltip title="Delete">
-                    <IconButton aria-label="delete">
-                        <DeleteIcon />
-                    </IconButton>
-                </Tooltip>
-            ) : (
-                <Tooltip title="Filter list">
-                    <IconButton aria-label="filter list">
-                        <FilterListIcon />
-                    </IconButton>
-                </Tooltip>
-            )}
+            <Typography className={classes.title} variant='h6' id='carLicensePlates' component='div'>
+                Car license plates
+            </Typography>
         </Toolbar>
     );
 };
@@ -206,6 +183,23 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function EnhancedTable(props) {
+    const [inlineConsoleVisible, setInlineConsoleVisible] = React.useState(false);
+    const ref = useRef();
+    useEffect(() => {
+        const inlinedConsole = createConsole();
+        document.body.appendChild(inlinedConsole);
+        ref.current = inlineConsoleVisible;
+        console.debug('Created inline console: ' + inlinedConsole);
+        const tableHeader = document.querySelector('div#carLicensePlates');
+        if (tableHeader) {
+            tableHeader.addEventListener('dblclick', (event) => showHideConsole());
+            console.debug('Listener added');
+        } else {
+            console.warn('Table header not found. Inline console cannot be attached.');
+        };
+
+        return function cleanup() {tableHeader.removeEventListener('dblclick', (event) => showHideConsole())};
+    }, []);
     const classes = useStyles();
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('car_license_plate_number');
@@ -214,6 +208,17 @@ export default function EnhancedTable(props) {
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+    const showHideConsole = () => {
+        let inlinedConsole = document.getElementById('consoleWrapper');
+        const prevConsoleState = ref.current;
+        if (prevConsoleState) {
+            inlinedConsole.setAttribute('hidden', 'true');
+        } else {
+            inlinedConsole.removeAttribute('hidden');
+        };
+        ref.current = !prevConsoleState;
+        setInlineConsoleVisible(!prevConsoleState);
+    };
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
