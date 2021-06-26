@@ -27,19 +27,19 @@ const columns = [
         id: 'parsed_timestamp',
         label: 'Timestamp',
         minWidth: 100,
-        align: 'right'
+        align: 'center'
     },
     {
         id: 'parsed_date_time',
         label: 'Parsed date/time',
         minWidth: 140,
-        align: 'left'
+        align: 'center'
     },
     {
         id: 'gps_location',
         label: 'Gps Coordinates',
         minWidth: 120,
-        align: 'left'
+        align: 'center'
     },
     {
         id: 'object_key_in_bucket',
@@ -303,12 +303,12 @@ export default function EnhancedTable(props) {
                                             key={row.name}
                                             selected={isItemSelected}
                                         >
-                                            <TableCell align="left" component="th" id={labelId} scope="row" padding="none">
+                                            <TableCell align="center" component="th" id={labelId} scope="row" padding="none">
                                                 {row.car_license_plate_number}
                                             </TableCell>
-                                            <TableCell align="left">{row.parsed_timestamp}</TableCell>
-                                            <TableCell align="right">{row.parsed_date_time}</TableCell>
-                                            <TableCell align="left">{row.gps_location}</TableCell>
+                                            <TableCell align="center">{row.parsed_timestamp}</TableCell>
+                                            <TableCell align="center">{row.parsed_date_time}</TableCell>
+                                            <TableCell align="center">{row.gps_location}</TableCell>
                                             <TableCell align="left">{row.object_key_in_bucket}</TableCell>
                                         </TableRow>
                                     );
