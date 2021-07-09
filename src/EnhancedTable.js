@@ -13,7 +13,17 @@ import PropTypes from 'prop-types';
 import {lighten} from "material-ui/utils/colorManipulator";
 import clsx from "clsx";
 import {createConsole} from "./inlineConsole";
+import {S3Image} from 'aws-amplify-react';
+import {Storage} from 'aws-amplify';
+import SimpleMap from "./PreviewOnMap";
 
+Storage.configure({
+    customPrefix: {
+        public: '',
+        private: '',
+        protected: ''
+    }
+});
 
 const columns = [
     {
@@ -70,6 +80,9 @@ const useStyles = makeStyles(theme => ({
         top: 20,
         width: 1,
     },
+    recognizedImagePreview: {
+        width: '200px'
+    }
 }));
 
 function descendingComparator(a, b, orderBy) {
@@ -297,6 +310,22 @@ export default function EnhancedTable(props) {
                                 .map((row, index) => {
                                     const isItemSelected = isSelected(row.name);
                                     const labelId = `enhanced-table-checkbox-${index}`;
+                                    let location = null;
+                                    if (row.gps_location) {
+                                        let coords = row.gps_location.split(', ');
+                                        const coordsObject = {
+                                            lat: Number(coords[0]),
+                                            lng: Number(coords[1]),
+                                            capture: row.car_license_plate_number,
+                                        };
+                                        location = <SimpleMap
+                                            center = {coordsObject}
+                                            marker = {coordsObject}
+                                            zoom = {18}
+                                        />;
+                                    } else {
+                                        location = row.gps_location;
+                                    }
 
                                     return (
                                         <TableRow
@@ -313,8 +342,11 @@ export default function EnhancedTable(props) {
                                             </TableCell>
                                             <TableCell align="center">{row.parsed_timestamp}</TableCell>
                                             <TableCell align="center">{row.parsed_date_time}</TableCell>
-                                            <TableCell align="center">{row.gps_location}</TableCell>
-                                            <TableCell align="left">{row.object_key_in_bucket}</TableCell>
+                                            <TableCell align="center">{location}</TableCell>
+                                            <TableCell align="left">
+                                                <S3Image imgKey={row.object_key_in_bucket}
+                                                         className={classes.recognizedImagePreview} />
+                                            </TableCell>
                                         </TableRow>
                                     );
                                 })}

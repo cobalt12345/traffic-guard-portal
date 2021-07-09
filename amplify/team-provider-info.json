@@ -28,10 +28,11 @@
           "bucketName": "traffic-guard-cars-and-plates",
           "region": "eu-central-1"
         },
-        "TrafficGuardParsedCarLicensePlates": {
-          "tableName": "TrafficGuardParsedCarLicensePlates",
+        "TrafficGuardParsedCarLicensePlatesrtguuiavrzekdoumqfjjwmtgcedevelope": {
+          "tableName": "TrafficGuardParsedCarLicensePlates-rtguuiavrzekdoumqfjjwmtgce-develope",
           "region": "eu-central-1",
-          "arn": "arn:aws:dynamodb:eu-central-1:469694857107:table/TrafficGuardParsedCarLicensePlates",
+          "arn": "arn:aws:dynamodb:eu-central-1:469694857107:table/TrafficGuardParsedCarLicensePlates-rtguuiavrzekdoumqfjjwmtgce-develope",
+          "streamArn": "arn:aws:dynamodb:eu-central-1:469694857107:table/TrafficGuardParsedCarLicensePlates-rtguuiavrzekdoumqfjjwmtgce-develope/stream/2021-06-19T21:54:46.403",
           "partitionKeyName": "car_license_plate_number",
           "partitionKeyType": "S",
           "sortKeyName": "parsed_timestamp",

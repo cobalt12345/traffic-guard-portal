@@ -40,6 +40,12 @@
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
       "dependsOn": []
+    },
+    "TrafficGuardParsedCarLicensePlatesrtguuiavrzekdoumqfjjwmtgcedevelope": {
+      "service": "DynamoDB",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
     }
   }
 }
