@@ -1,7 +1,6 @@
 import React from "react";
 import GoogleMapReact from 'google-map-react';
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import {default as Car} from '@material-ui/icons/DirectionsCar';
 
 export default function SimpleMap(props){
     const defaultProps = {
@@ -18,10 +17,9 @@ export default function SimpleMap(props){
                 defaultCenter={defaultProps.center}
                 defaultZoom={defaultProps.zoom}
             >
-                <AnyReactComponent
+                <Car color="secondary"
                     lat={defaultProps.marker.lat}
                     lng={defaultProps.marker.lng}
-                    text={defaultProps.marker.capture}
                 />
             </GoogleMapReact>
         </div>

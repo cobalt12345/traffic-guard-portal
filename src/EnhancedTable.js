@@ -8,7 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import {FormControlLabel, IconButton, Switch, TableSortLabel, Toolbar, Tooltip, Typography} from "@material-ui/core";
+import {FormControlLabel, Switch, TableSortLabel, Toolbar, Typography} from "@material-ui/core";
 import PropTypes from 'prop-types';
 import {lighten} from "material-ui/utils/colorManipulator";
 import clsx from "clsx";
@@ -212,7 +212,7 @@ export default function EnhancedTable(props) {
         };
 
         return function cleanup() {tableHeader.removeEventListener('dblclick', (event) => showHideConsole())};
-    }, []);
+    }, [inlineConsoleVisible]);
     const classes = useStyles();
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('car_license_plate_number');
@@ -228,7 +228,7 @@ export default function EnhancedTable(props) {
             inlinedConsole.setAttribute('hidden', 'true');
         } else {
             inlinedConsole.removeAttribute('hidden');
-        };
+        }
         ref.current = !prevConsoleState;
         setInlineConsoleVisible(!prevConsoleState);
     };
@@ -310,13 +310,12 @@ export default function EnhancedTable(props) {
                                 .map((row, index) => {
                                     const isItemSelected = isSelected(row.name);
                                     const labelId = `enhanced-table-checkbox-${index}`;
-                                    let location = null;
+                                    let location;
                                     if (row.gps_location) {
                                         let coords = row.gps_location.split(', ');
                                         const coordsObject = {
                                             lat: Number(coords[0]),
                                             lng: Number(coords[1]),
-                                            capture: row.car_license_plate_number,
                                         };
                                         location = <SimpleMap
                                             center = {coordsObject}
