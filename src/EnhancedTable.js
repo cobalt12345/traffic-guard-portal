@@ -212,7 +212,7 @@ export default function EnhancedTable(props) {
         };
 
         return function cleanup() {tableHeader.removeEventListener('dblclick', (event) => showHideConsole())};
-    }, [inlineConsoleVisible]);
+    }, []);
     const classes = useStyles();
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('car_license_plate_number');
