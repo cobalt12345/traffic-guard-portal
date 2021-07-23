@@ -8,7 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import {FormControlLabel, Switch, TableSortLabel, Toolbar, Typography} from "@material-ui/core";
+import {FormControlLabel, Popover, Switch, TableSortLabel, Toolbar, Typography} from "@material-ui/core";
 import PropTypes from 'prop-types';
 import {lighten} from "material-ui/utils/colorManipulator";
 import clsx from "clsx";
@@ -16,6 +16,7 @@ import {createConsole} from "./inlineConsole";
 import {S3Image} from 'aws-amplify-react';
 import {Storage} from 'aws-amplify';
 import SimpleMap from "./PreviewOnMap";
+import {Link} from '@material-ui/core';
 
 Storage.configure({
     customPrefix: {
@@ -197,6 +198,12 @@ EnhancedTableToolbar.propTypes = {
 
 export default function EnhancedTable(props) {
     const [inlineConsoleVisible, setInlineConsoleVisible] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [centerLatitude, setCenterLatitude] = React.useState(55.793688);
+    const [centerLongitude, setCenterLongitude] = React.useState(37.612401);
+    const [markerLatitude, setMarkerLatitude] = React.useState(55.793688);
+    const [markerLongitude, setMarkerLongitude] = React.useState(37.612401);
+
     const ref = useRef();
     useEffect(() => {
         const inlinedConsole = createConsole();
@@ -280,6 +287,15 @@ export default function EnhancedTable(props) {
         setDense(event.target.checked);
     };
 
+    const openMap = (event) => {
+        const lat = event.target.getAttribute('lat');
+        const lng = event.target.getAttribute('lng');
+        setCenterLatitude(lat);
+        setCenterLongitude(lng);
+        setMarkerLatitude(lat);
+        setMarkerLongitude(lng);
+        setAnchorEl(event.currentTarget);
+    }
     const isSelected = (name) => selected.indexOf(name) !== -1;
 
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, props.plates.length - page * rowsPerPage);
@@ -287,6 +303,24 @@ export default function EnhancedTable(props) {
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
+                <Popover open={Boolean(anchorEl)} anchorEl={anchorEl} onClose={() => setAnchorEl(null)}
+                         anchorOrigin={{
+                             vertical: 'bottom',
+                             horizontal: 'left',
+                         }}
+                         transformOrigin={{
+                             vertical: 'top',
+                             horizontal: 'center',
+                         }}>
+                    <SimpleMap
+                        id = 'popupMap'
+                        centerLatitude = {centerLatitude}
+                        centerLongitude ={centerLongitude}
+                        markerLatitude = {markerLatitude}
+                        markerLongitude = {markerLongitude}
+                        zoom = {18}
+                    />
+                </Popover>
                 <EnhancedTableToolbar numSelected={selected.length} />
                 <TableContainer>
                     <Table
@@ -317,13 +351,15 @@ export default function EnhancedTable(props) {
                                             lat: Number(coords[0]),
                                             lng: Number(coords[1]),
                                         };
-                                        location = <SimpleMap
-                                            center = {coordsObject}
-                                            marker = {coordsObject}
-                                            zoom = {18}
-                                        />;
+                                        location = <Link href="#"
+                                                         color="primary"
+                                                         lat={Number(coords[0])}
+                                                         lng={Number(coords[1])}
+                                                         onClick={openMap}>
+                                            {row.gps_location}
+                                        </Link>;
                                     } else {
-                                        location = row.gps_location;
+                                        location = 'No Data';
                                     }
 
                                     return (
