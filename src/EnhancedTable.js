@@ -83,6 +83,9 @@ const useStyles = makeStyles(theme => ({
     },
     recognizedImagePreview: {
         width: '200px'
+    },
+    recognizedImage: {
+        width: '600px'
     }
 }));
 
@@ -199,6 +202,8 @@ EnhancedTableToolbar.propTypes = {
 export default function EnhancedTable(props) {
     const [inlineConsoleVisible, setInlineConsoleVisible] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [imageAnchorEl, setImageAnchorEl] = React.useState(null);
+    const [object_key_in_bucket, setObjectKeyInBucket] = React.useState(null);
     const [centerLatitude, setCenterLatitude] = React.useState(55.793688);
     const [centerLongitude, setCenterLongitude] = React.useState(37.612401);
     const [markerLatitude, setMarkerLatitude] = React.useState(55.793688);
@@ -321,6 +326,18 @@ export default function EnhancedTable(props) {
                         zoom = {18}
                     />
                 </Popover>
+                <Popover open={Boolean(imageAnchorEl)} anchorEl={imageAnchorEl} onClose={() => setImageAnchorEl(null)}
+                         anchorOrigin={{
+                             vertical: 'bottom',
+                             horizontal: 'left',
+                         }}
+                         transformOrigin={{
+                             vertical: 'top',
+                             horizontal: 'center',
+                         }}>
+                    <S3Image imgKey={object_key_in_bucket}
+                             className={classes.recognizedImage} />
+                </Popover>
                 <EnhancedTableToolbar numSelected={selected.length} />
                 <TableContainer>
                     <Table
@@ -380,7 +397,11 @@ export default function EnhancedTable(props) {
                                             <TableCell align="center">{location}</TableCell>
                                             <TableCell align="left">
                                                 <S3Image imgKey={row.object_key_in_bucket}
-                                                         className={classes.recognizedImagePreview} />
+                                                         className={classes.recognizedImagePreview}
+                                                        onClick={(event) =>
+                                                            {setObjectKeyInBucket(row.object_key_in_bucket);
+                                                                setImageAnchorEl(event.currentTarget);
+                                                            }}/>
                                             </TableCell>
                                         </TableRow>
                                     );
