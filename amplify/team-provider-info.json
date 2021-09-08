@@ -1,38 +1,35 @@
 {
-  "develope": {
+  "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-trafficguardportal-develope-223724-authRole",
-      "UnauthRoleArn": "arn:aws:iam::469694857107:role/amplify-trafficguardportal-develope-223724-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::469694857107:role/amplify-trafficguardportal-develope-223724-authRole",
+      "AuthRoleName": "amplify-trafficguardportal-dev-151023-authRole",
+      "UnauthRoleArn": "arn:aws:iam::785668202743:role/amplify-trafficguardportal-dev-151023-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::785668202743:role/amplify-trafficguardportal-dev-151023-authRole",
       "Region": "eu-central-1",
-      "DeploymentBucketName": "amplify-trafficguardportal-develope-223724-deployment",
-      "UnauthRoleName": "amplify-trafficguardportal-develope-223724-unauthRole",
-      "StackName": "amplify-trafficguardportal-develope-223724",
-      "StackId": "arn:aws:cloudformation:eu-central-1:469694857107:stack/amplify-trafficguardportal-develope-223724/9d56aa00-d06c-11eb-996e-027221a4631a",
-      "AmplifyAppId": "d3opt3oeup8dj"
+      "DeploymentBucketName": "amplify-trafficguardportal-dev-151023-deployment",
+      "UnauthRoleName": "amplify-trafficguardportal-dev-151023-unauthRole",
+      "StackName": "amplify-trafficguardportal-dev-151023",
+      "StackId": "arn:aws:cloudformation:eu-central-1:785668202743:stack/amplify-trafficguardportal-dev-151023/c3bd4060-072f-11ec-9e82-0ae3cbe3a3b6",
+      "AmplifyAppId": "d3000kvfeq9aw"
     },
     "categories": {
       "hosting": {
         "amplifyhosting": {
-          "appId": "d3opt3oeup8dj",
+          "appId": "d3000kvfeq9aw",
           "type": "manual"
         }
       },
       "auth": {
-        "trafficguardportalfa3dd78afa3dd78a": {
-          "googleClientId": "102645471861-4ecj2hrdbb33vn4aoicroi2ellqdf1iv.apps.googleusercontent.com"
-        }
+        "trafficguardportal70be4326": {}
       },
       "storage": {
-        "trafficguardportal1acc6547": {
+        "trafficguardportal673caf84": {
           "bucketName": "traffic-guard-cars-and-plates",
           "region": "eu-central-1"
         },
-        "TrafficGuardParsedCarLicensePlatesrtguuiavrzekdoumqfjjwmtgcedevelope": {
-          "tableName": "TrafficGuardParsedCarLicensePlates-rtguuiavrzekdoumqfjjwmtgce-develope",
+        "TrafficGuardParsedCarLicensePlates": {
+          "tableName": "TrafficGuardParsedCarLicensePlates",
           "region": "eu-central-1",
-          "arn": "arn:aws:dynamodb:eu-central-1:469694857107:table/TrafficGuardParsedCarLicensePlates-rtguuiavrzekdoumqfjjwmtgce-develope",
-          "streamArn": "arn:aws:dynamodb:eu-central-1:469694857107:table/TrafficGuardParsedCarLicensePlates-rtguuiavrzekdoumqfjjwmtgce-develope/stream/2021-06-19T21:54:46.403",
+          "arn": "arn:aws:dynamodb:eu-central-1:785668202743:table/TrafficGuardParsedCarLicensePlates",
           "partitionKeyName": "car_license_plate_number",
           "partitionKeyType": "S",
           "sortKeyName": "parsed_timestamp",

@@ -1,5 +1,5 @@
 import React from 'react';
-import {listTrafficGuardParsedCarLicensePlatess} from './graphql/queries';
+import {listTrafficGuardParsedCarLicensePlates} from './graphql/queries';
 import awsConfig from './aws-exports'
 import Amplify, {Auth} from "aws-amplify";
 import AWSAppSyncClient, {AUTH_TYPE} from 'aws-appsync';
@@ -32,8 +32,8 @@ class CarLicensePlatesList extends React.Component {
 
     componentDidMount() {
         apiClient.query({
-            query: gql(listTrafficGuardParsedCarLicensePlatess)
-        }).then(result => this.listReceived(result.data.listTrafficGuardParsedCarLicensePlatess.items),
+            query: gql(listTrafficGuardParsedCarLicensePlates)
+        }).then(result => this.listReceived(result.data.listTrafficGuardParsedCarLicensePlates.items),
                 reason => console.error(`Query error: ${reason}`));
     }
 

@@ -1,36 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const syncTrafficGuardParsedCarLicensePlates = /* GraphQL */ `
-  query SyncTrafficGuardParsedCarLicensePlates(
-    $filter: ModelTrafficGuardParsedCarLicensePlatesFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncTrafficGuardParsedCarLicensePlates(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        car_license_plate_number
-        parsed_timestamp
-        parsed_date_time
-        gps_location
-        object_key_in_bucket
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getTrafficGuardParsedCarLicensePlates = /* GraphQL */ `
   query GetTrafficGuardParsedCarLicensePlates(
     $car_license_plate_number: String!
@@ -45,16 +15,13 @@ export const getTrafficGuardParsedCarLicensePlates = /* GraphQL */ `
       parsed_date_time
       gps_location
       object_key_in_bucket
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
   }
 `;
-export const listTrafficGuardParsedCarLicensePlatess = /* GraphQL */ `
-  query ListTrafficGuardParsedCarLicensePlatess(
+export const listTrafficGuardParsedCarLicensePlates = /* GraphQL */ `
+  query ListTrafficGuardParsedCarLicensePlates(
     $car_license_plate_number: String
     $parsed_timestamp: ModelIntKeyConditionInput
     $filter: ModelTrafficGuardParsedCarLicensePlatesFilterInput
@@ -62,7 +29,7 @@ export const listTrafficGuardParsedCarLicensePlatess = /* GraphQL */ `
     $nextToken: String
     $sortDirection: ModelSortDirection
   ) {
-    listTrafficGuardParsedCarLicensePlatess(
+    listTrafficGuardParsedCarLicensePlates(
       car_license_plate_number: $car_license_plate_number
       parsed_timestamp: $parsed_timestamp
       filter: $filter
@@ -76,14 +43,10 @@ export const listTrafficGuardParsedCarLicensePlatess = /* GraphQL */ `
         parsed_date_time
         gps_location
         object_key_in_bucket
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
   }
 `;
@@ -108,14 +71,10 @@ export const carLicensePlateByBucketObjectKey = /* GraphQL */ `
         parsed_date_time
         gps_location
         object_key_in_bucket
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
   }
 `;
@@ -140,14 +99,10 @@ export const carLicensePlateByGpsLocation = /* GraphQL */ `
         parsed_date_time
         gps_location
         object_key_in_bucket
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
   }
 `;
@@ -174,14 +129,93 @@ export const carLicensePlateByCaughtDateTime = /* GraphQL */ `
         parsed_date_time
         gps_location
         object_key_in_bucket
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
+    }
+  }
+`;
+export const getParsedCarLicensePlates = /* GraphQL */ `
+  query GetParsedCarLicensePlates(
+    $car_license_plate_number: String!
+    $parsed_timestamp: Int!
+  ) {
+    getParsedCarLicensePlates(
+      car_license_plate_number: $car_license_plate_number
+      parsed_timestamp: $parsed_timestamp
+    ) {
+      car_license_plate_number
+      parsed_timestamp
+      parsed_date_time
+      gps_location
+      object_key_in_bucket
+    }
+  }
+`;
+export const listParsedCarLicensePlates = /* GraphQL */ `
+  query ListParsedCarLicensePlates(
+    $filter: TableParsedCarLicensePlatesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listParsedCarLicensePlates(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        car_license_plate_number
+        parsed_timestamp
+        parsed_date_time
+        gps_location
+        object_key_in_bucket
+      }
+      nextToken
+    }
+  }
+`;
+export const queryParsedCarLicensePlatesByObjectKeyInBucketGSI = /* GraphQL */ `
+  query QueryParsedCarLicensePlatesByObjectKeyInBucketGSI(
+    $object_key_in_bucket: String!
+    $first: Int
+    $after: String
+  ) {
+    queryParsedCarLicensePlatesByObjectKeyInBucketGSI(
+      object_key_in_bucket: $object_key_in_bucket
+      first: $first
+      after: $after
+    ) {
+      items {
+        car_license_plate_number
+        parsed_timestamp
+        parsed_date_time
+        gps_location
+        object_key_in_bucket
+      }
+      nextToken
+    }
+  }
+`;
+export const queryParsedCarLicensePlatesByGpsLocation = /* GraphQL */ `
+  query QueryParsedCarLicensePlatesByGpsLocation(
+    $gps_location: String!
+    $first: Int
+    $after: String
+  ) {
+    queryParsedCarLicensePlatesByGpsLocation(
+      gps_location: $gps_location
+      first: $first
+      after: $after
+    ) {
+      items {
+        car_license_plate_number
+        parsed_timestamp
+        parsed_date_time
+        gps_location
+        object_key_in_bucket
+      }
+      nextToken
     }
   }
 `;

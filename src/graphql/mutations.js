@@ -15,9 +15,6 @@ export const createTrafficGuardParsedCarLicensePlates = /* GraphQL */ `
       parsed_date_time
       gps_location
       object_key_in_bucket
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -37,9 +34,6 @@ export const updateTrafficGuardParsedCarLicensePlates = /* GraphQL */ `
       parsed_date_time
       gps_location
       object_key_in_bucket
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -59,11 +53,47 @@ export const deleteTrafficGuardParsedCarLicensePlates = /* GraphQL */ `
       parsed_date_time
       gps_location
       object_key_in_bucket
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
+    }
+  }
+`;
+export const createParsedCarLicensePlates = /* GraphQL */ `
+  mutation CreateParsedCarLicensePlates(
+    $input: CreateParsedCarLicensePlatesInput!
+  ) {
+    createParsedCarLicensePlates(input: $input) {
+      car_license_plate_number
+      parsed_timestamp
+      parsed_date_time
+      gps_location
+      object_key_in_bucket
+    }
+  }
+`;
+export const updateParsedCarLicensePlates = /* GraphQL */ `
+  mutation UpdateParsedCarLicensePlates(
+    $input: UpdateParsedCarLicensePlatesInput!
+  ) {
+    updateParsedCarLicensePlates(input: $input) {
+      car_license_plate_number
+      parsed_timestamp
+      parsed_date_time
+      gps_location
+      object_key_in_bucket
+    }
+  }
+`;
+export const deleteParsedCarLicensePlates = /* GraphQL */ `
+  mutation DeleteParsedCarLicensePlates(
+    $input: DeleteParsedCarLicensePlatesInput!
+  ) {
+    deleteParsedCarLicensePlates(input: $input) {
+      car_license_plate_number
+      parsed_timestamp
+      parsed_date_time
+      gps_location
+      object_key_in_bucket
     }
   }
 `;
