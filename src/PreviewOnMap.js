@@ -15,7 +15,7 @@ export default function SimpleMap(props){
         // Important! Always set the container height explicitly
         <div className={classes.popupMap}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: "***REMOVED***" }}
+                bootstrapURLKeys={{ key: "..." }}
                 defaultCenter={{lat: Number(props.centerLatitude), lng: Number(props.centerLongitude)}}
                 center={{lat: Number(props.centerLatitude), lng: Number(props.centerLongitude)}}
                 defaultZoom={props.zoom}
